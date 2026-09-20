@@ -1,0 +1,53 @@
+{
+  "_comment": "The ONLY place where the existing store's table and column names appear. Run `npm run inspect-schema` against the real database and adjust. Defaults match the VKC store (Prisma, PostgreSQL).",
+  "timestampStorage": "utc_timestamp",
+  "_timestampStorageHelp": "utc_timestamp = TIMESTAMP WITHOUT TIME ZONE holding UTC (Prisma default). timestamptz = TIMESTAMP WITH TIME ZONE.",
+  "users": {
+    "table": "users",
+    "id": "id",
+    "nameColumns": [
+      "firstName",
+      "lastName"
+    ],
+    "phone": "phone",
+    "dateOfBirth": "dob",
+    "optIn": null,
+    "onlyWhere": "u.\"role\"::text = 'CUSTOMER' AND u.\"isActive\" = TRUE AND u.\"isBlocked\" = FALSE"
+  },
+  "orders": {
+    "table": "orders",
+    "id": "id",
+    "userId": "userId",
+    "amount": "totalAmount",
+    "date": "createdAt",
+    "status": "status",
+    "completedStatuses": [
+      "DELIVERED"
+    ],
+    "refundedAmount": null,
+    "couponCode": "couponCode"
+  },
+  "storeCoupons": {
+    "table": "coupons",
+    "id": "id",
+    "code": "code",
+    "type": "type",
+    "typeCast": "\"CouponType\"",
+    "typeValues": {
+      "FLAT": "FIXED",
+      "PERCENT": "PERCENTAGE"
+    },
+    "value": "value",
+    "minOrderAmount": "minOrderAmount",
+    "maxDiscount": "maxDiscount",
+    "usageLimit": "usageLimit",
+    "startsAt": "startsAt",
+    "expiresAt": "expiresAt",
+    "isActive": "isActive"
+  },
+  "storeAdmins": {
+    "email": "email",
+    "passwordHash": "passwordHash",
+    "where": "u.\"role\"::text = 'ADMIN' AND u.\"isActive\" = TRUE AND u.\"isBlocked\" = FALSE"
+  }
+}
